@@ -8,6 +8,8 @@ class Condition extends Field
 {
     public $conditions = [];
 
+    public $showOnIndex = false;
+
     public $component = 'conditional';
 
     public function resolve($resource, $attribute = null)

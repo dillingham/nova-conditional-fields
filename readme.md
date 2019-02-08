@@ -11,7 +11,7 @@ composer require dillingham/nova-conditional-fields
 ```
 
 ### Usage
-```
+```php
 use NovaConditionalFields\Condition;
 ```
 Example using a boolean field
