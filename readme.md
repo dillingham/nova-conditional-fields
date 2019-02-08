@@ -18,12 +18,11 @@ Example using a boolean field
 ```php
 Boolean::make('Show Fields'),
 
-Condition::make('Show Fields')
-    ->fieldsWhen(true, [
-        Text::make('Extra Setting 1'),
-        Text::make('Extra Setting 2'),
-        Text::make('Extra Setting 3'),
-    ])
+Condition::make('Show Fields')->fieldsWhen(true, [
+    Text::make('Extra Setting 1'),
+    Text::make('Extra Setting 2'),
+    Text::make('Extra Setting 3'),
+])
 ```
 An example using select
 
