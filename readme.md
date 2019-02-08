@@ -1,9 +1,13 @@
 # Nova Conditional Fields
+
+[![Latest Version on Github](https://img.shields.io/github/release/dillingham/nova-conditional-fields.svg?style=flat-square)](https://packagist.org/packages/dillingham/nova-conditional-fields)
+[![Total Downloads](https://img.shields.io/packagist/dt/dillingham/nova-conditional-fields.svg?style=flat-square)](https://packagist.org/packages/dillingham/nova-conditional-fields)
+
 Conditionally display fields based on another field's value
 
 ### Install
 ```
-composer require dillingham\nova-conditional-fields
+composer require dillingham/nova-conditional-fields
 ```
 
 ### Usage
