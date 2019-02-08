@@ -48,6 +48,8 @@ Condition::make('Type')
 ### Coming soon
 -- BelongsTo support
 
+-- fieldsWhenTrue
+
 -- fieldsWhenNot
 
 -- fieldsWhenEmpty
