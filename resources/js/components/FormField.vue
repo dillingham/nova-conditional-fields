@@ -1,49 +1,54 @@
 <template>
-    <div>
-        <div v-for="condition in field.conditions" :key="condition.value">
-            <div v-show="condition.value == value">
-                <component
-                    :field="subfield"
-                    :resource-id="resourceId"
-                    :resource-name="resourceName"
-                    :is="'form-' + subfield.component"
-                    :key="'form-' + subfield.attribute"
-                    v-for="subfield in condition.fields"
-                    :ref="'field-' + subfield.attribute"
-                />
-            </div>
-        </div>
-    </div>
+    <component
+            v-if="needShow"
+            :is="`form-${field.original_component}`"
+            v-bind="$attrs"
+            v-on="$listeners"
+    ></component>
 </template>
 
 <script>
-
-import {Errors, FormField, HandlesValidationErrors} from 'laravel-nova';
-
-export default {
-    mixins: [ FormField, HandlesValidationErrors ],
-    props: ['resourceName', 'resourceId', 'field'],
-    data() {
-        return {
-            value: null,
-            components: []
-        }
-    },
-    mounted() {
-        this.$parent.$children.forEach(component => {
-            if(component.field !== undefined && component.field.attribute == this.field.attribute) {
-                component.$watch('value', (value) => {
-                    this.value = value
-                }, { immediate: true });
+    export default {
+        data() {
+            return {
+                value: null
             }
-        });
-    },
-    methods: {
-        fill(formData) {
-            this.$children.forEach(component => {
-                component.fill(formData);
+        },
+        mounted() {
+            this.field.fill = () => {}
+            this.$parent.$children.forEach(component => {
+                if (component.field !== undefined && component.field.attribute == this.field.condition[1]) {
+                    let attribute = 'value';
+
+                    if(component.field.component === 'belongs-to-field') {
+                        attribute = 'selectedResourceId'
+                    }
+
+                    component.$watch(attribute, (value) => {
+                        this.value = value
+                    }, {deep: true, immediate: true})
+                }
             })
-        }
+        },
+        watch: {
+            needShow(val) {
+                if (!val) {
+                    this.field.fill = () => {}
+                }
+            }
+        },
+        computed: {
+            needShow() {
+                switch (this.field.condition[0]) {
+                    case 'not':
+                        return this.value != this.field.condition[2]
+                    default:
+                        return this.value == this.field.condition[2]
+                }
+            },
+            field() {
+                return this.$attrs.field
+            }
+        },
     }
-}
 </script>
