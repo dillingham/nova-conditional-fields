@@ -2,11 +2,11 @@
 
 namespace NovaConditionalFields;
 
-use Laravel\Nova\Panel;
+use Laravel\Nova\Field;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Condition extends Panel
+class Condition extends Field
 {
     public $conditions = [];
 
