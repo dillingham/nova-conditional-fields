@@ -1,15 +1,18 @@
 <template>
     <div>
+        <h1>Hello</h1>
         <div v-for="condition in field.conditions" :key="condition.value">
+
             <div v-show="condition.value == value">
                 <component
-                    :field="subfield"
-                    :resource-id="resourceId"
+                    :key="index"
+                    v-for="(field, index) in panel.fields"
+                    :is="resolveComponentName(field)"
                     :resource-name="resourceName"
-                    :is="'form-' + subfield.component"
-                    :key="'form-' + subfield.attribute"
-                    v-for="subfield in condition.fields"
-                    :ref="'field-' + subfield.attribute"
+                    :resource-id="resourceId"
+                    :resource="resource"
+                    :field="field"
+                    @actionExecuted="actionExecuted"
                 />
             </div>
         </div>
@@ -17,12 +20,10 @@
 </template>
 
 <script>
-
-import {Errors, FormField, HandlesValidationErrors} from 'laravel-nova';
+import { BehavesAsPanel } from 'laravel-nova'
 
 export default {
-    mixins: [ FormField, HandlesValidationErrors ],
-    props: ['resourceName', 'resourceId', 'field'],
+    mixins: [BehavesAsPanel],
     data() {
         return {
             value: null,
@@ -30,20 +31,25 @@ export default {
         }
     },
     mounted() {
-        this.$parent.$children.forEach(component => {
-            if(component.field !== undefined && component.field.attribute == this.field.attribute) {
-                component.$watch('value', (value) => {
-                    this.value = value
-                }, { immediate: true });
-            }
-        });
+        alert()
+        console.log(this.panel.fields);
+        // this.$parent.$children.forEach(component => {
+        //     if(component.field !== undefined && component.field.attribute == this.field.attribute) {
+        //         component.$watch('value', (value) => {
+        //             this.value = value
+        //         }, { immediate: true });
+        //     }
+        // });
     },
     methods: {
-        fill(formData) {
-            this.$children.forEach(component => {
-                component.fill(formData);
-            })
-        }
+        resolveComponentName(field) {
+            return field.prefixComponent ? 'detail-' + field.component : field.component
+        },
+        // fill(formData) {
+        //     this.$children.forEach(component => {
+        //         component.fill(formData);
+        //     })
+        // }
     }
 }
 </script>

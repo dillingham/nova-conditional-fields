@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>Hello</h1>
         <div v-for="condition in field.conditions" :key="condition.value">
             <div v-if="condition.value == value">
                 <component
@@ -15,14 +16,17 @@
 </template>
 
 <script>
+import { BehavesAsPanel } from 'laravel-nova'
+
 export default {
-    props: ['resource', 'resourceName', 'resourceId', 'field'],
+    mixins: [BehavesAsPanel],
     data() {
         return {
             value: null
         }
     },
     mounted() {
+        alert()
         this.$parent.$children.forEach(component => {
             if(component.field !== undefined && component.field.attribute == this.field.attribute) {
                 this.value = component.value;

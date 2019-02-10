@@ -2,51 +2,26 @@
 
 namespace NovaConditionalFields;
 
-use Laravel\Nova\Panel;
-
-use Laravel\Nova\Http\Requests\NovaRequest;
-
-class Condition extends Panel
+class Condition
 {
-    public $conditions = [];
+    public static $attribute = null;
 
-    public $storeCondition = false;
-
-    public $component = 'conditional';
-
-    public function fill(NovaRequest $request, $model)
+    public static function for($attribute)
     {
-        $attributes = collect($this->conditions)->pluck('fields.*.attribute')->first();
+        self::$attribute = $attribute;
 
-        foreach($attributes as $attribute) {
-            $this->fillInto($request, $model, $attribute, $attribute);
-        }
+        return new static;
     }
 
-    public function resolve($resource, $attribute = null)
+    public function when($value, $fields)
     {
-        foreach($this->conditions as $condition)
-        {
-            foreach($condition['fields'] as $field)
-            {
-                $field->resolve($resource, $attribute);
-            }
-        }
-
-        $this->withMeta([
-            'conditional' => true,
-            'parent' => $this->attribute,
-            'conditions' => $this->conditions
-        ]);
-    }
-
-    public function fieldsWhen($value, $fields)
-    {
-        $this->conditions[] = [
-            'value' => $value,
-            'fields' => $fields
-        ];
+        $this->conditions[$value] = $fields;
 
         return $this;
+    }
+
+    public function make()
+    {
+        return new ConditionPanel(self::$attribute, $this->conditions);
     }
 }
