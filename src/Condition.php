@@ -10,8 +10,6 @@ class Condition extends Field
 {
     public $conditions = [];
 
-    public $storeCondition = false;
-
     public $component = 'conditional';
 
     public function fill(NovaRequest $request, $model)
@@ -40,7 +38,7 @@ class Condition extends Field
         ]);
     }
 
-    public function fieldsWhen($value, $fields)
+    public function when($value, $fields)
     {
         $this->conditions[] = [
             'value' => $value,

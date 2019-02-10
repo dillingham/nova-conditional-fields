@@ -19,7 +19,7 @@ Example using a boolean field
 Boolean::make('Show Fields'),
 
 Condition::make('Show Fields')
-    ->fieldsWhen(true, [
+    ->when(true, [
         Text::make('Extra Setting 1'),
         Text::make('Extra Setting 2'),
         Text::make('Extra Setting 3'),
@@ -34,11 +34,11 @@ Select::make('Type')->options([
 ]),
 
 Condition::make('Type')
-    ->fieldsWhen('type-1', [
+    ->when('type-1', [
         Text::make('Setting 1'),
         Text::make('Setting 2'),
         Text::make('Setting 3'),
-    ])->fieldsWhen('type-2', [
+    ])->when('type-2', [
         Text::make('Setting 4'),
         Text::make('Setting 5'),
         Text::make('Setting 6'),
@@ -48,8 +48,8 @@ Condition::make('Type')
 ### Coming soon
 -- BelongsTo support
 
--- fieldsWhenTrue
+-- whenTrue
 
--- fieldsWhenNot
+-- whenNot
 
--- fieldsWhenEmpty
+-- whenEmpty
