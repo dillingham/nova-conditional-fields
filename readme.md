@@ -34,7 +34,7 @@ Select::make('Type')->options([
 ]),
 
 Condition::make('Type')
-    ->when('type-1', [
+    ->fieldsWhen('type-1', [
         Text::make('Setting 1'),
         Text::make('Setting 2'),
         Text::make('Setting 3'),
