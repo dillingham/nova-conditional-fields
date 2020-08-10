@@ -1,7 +1,7 @@
 # Nova Conditional Fields
 
 [![Latest Version on Github](https://img.shields.io/github/release/dillingham/nova-conditional-fields.svg?style=flat-square)](https://packagist.org/packages/dillingham/nova-conditional-fields)
-[![Total Downloads](https://img.shields.io/packagist/dt/dillingham/nova-conditional-fields.svg?style=flat-square)](https://packagist.org/packages/dillingham/nova-conditional-fields) [![Twitter Follow](https://img.shields.io/twitter/follow/dillinghammm?color=%231da1f1&label=Twitter&logo=%231da1f1&logoColor=%231da1f1&style=flat-square)](https://twitter.com/dillinghammm)
+[![Total Downloads](https://img.shields.io/packagist/dt/dillingham/nova-conditional-fields.svg?style=flat-square)](https://packagist.org/packages/dillingham/nova-conditional-fields) [![Twitter Follow](https://img.shields.io/twitter/follow/dillinghammm?color=%231da1f1&label=Twitter&logo=%231da1f1&logoColor=%231da1f1&style=flat-square)](https://twitter.com/im_brian_d)
 
 Conditionally display fields based on another field's value
 
@@ -53,3 +53,13 @@ Condition::make('Type')
 -- whenNot
 
 -- whenEmpty
+
+---
+
+# Author
+
+Hi 👋, Im Brian Dillingham, creator of this Nova package [and others](https://novapackages.com/collaborators/dillingham)
+
+Hope you find it useful. Feel free to reach out with feedback.
+
+Follow me on twitter: [@im_brian_d](https://twitter.com/im_brian_d) 
